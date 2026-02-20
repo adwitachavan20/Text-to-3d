@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Text to 3D Model Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 12px;
+            width: 420px;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        textarea {
+            width: 100%;
+            height: 80px;
+            border-radius: 8px;
+            border: none;
+            padding: 10px;
+            resize: none;
+            font-size: 14px;
+        }
+
+        button {
+            margin-top: 12px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 8px;
+            background: #4facfe;
+            color: white;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        button:hover {
+            background: #00c6ff;
+        }
+
+        .preview {
+            margin-top: 15px;
+            height: 150px;
+            border: 2px dashed #ccc;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            color: #ddd;
+        }
+
+        .download {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 15px;
+        }
+
+        .download button {
+            background: #43e97b;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Text → 3D Model Generator</h1>
+    <p>Generate textured 3D assets (GLB / OBJ)</p>
+
+    <textarea id="prompt" placeholder="e.g. A futuristic flying car with metallic texture"></textarea>
+
+    <button onclick="generateModel()">Generate 3D Model</button>
+
+    <div class="preview" id="preview">
+        3D Preview will appear here
+    </div>
+
+    <div class="download">
+        <button disabled id="glbBtn">Download GLB</button>
+        <button disabled id="objBtn">Download OBJ</button>
+    </div>
+</div>
+
+<script>
+    function generateModel() {
+        const prompt = document.getElementById("prompt").value;
+
+        if (prompt.trim() === "") {
+            alert("Please enter a description!");
+            return;
+        }
+
+        const preview = document.getElementById("preview");
+        preview.innerHTML = "⏳ Generating 3D Model...";
+
+        setTimeout(() => {
+            preview.innerHTML = "✅ 3D Model Generated (Preview)";
+            document.getElementById("glbBtn").disabled = false;
+            document.getElementById("objBtn").disabled = false;
+        }, 2000);
+    }
+</script>
+
+</body>
+</html>
